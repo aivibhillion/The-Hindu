@@ -1,0 +1,62 @@
+[
+  {
+    "q": "India finished at which position in the medal tally of the 2026 Commonwealth Games held in Glasgow?",
+    "options": ["2nd", "3rd", "4th", "5th"],
+    "answer": 2,
+    "explanation": "India finished 4th in the CWG 2026 medal tally with 39 medals, including 13 gold, marking a historic campaign led by strong showings in boxing and para athletics."
+  },
+  {
+    "q": "Which city will host the 2030 Commonwealth Games, following the handover from Glasgow 2026?",
+    "options": ["New Delhi", "Ahmedabad", "Mumbai", "Bengaluru"],
+    "answer": 1,
+    "explanation": "Ahmedabad has been confirmed as the host city for the 2030 Commonwealth Games, following the formal handover ceremony at the close of CWG 2026 in Glasgow."
+  },
+  {
+    "q": "PM Modi inaugurated the Alluri Sitarama Raju International Airport in August 2026. In which state is it located?",
+    "options": ["Telangana", "Odisha", "Andhra Pradesh", "Tamil Nadu"],
+    "answer": 2,
+    "explanation": "The airport, located at Bhogapuram in the Vizianagaram district of Andhra Pradesh, was inaugurated by PM Modi on 1 August 2026 and built at an estimated cost of ₹5,000 crore by the GMR Group."
+  },
+  {
+    "q": "Asmita Dey, who became the first Indian judoka to win a Commonwealth Games gold medal, represents which category and state?",
+    "options": ["60 kg, Tripura", "48 kg, Tripura", "48 kg, Assam", "52 kg, Manipur"],
+    "answer": 1,
+    "explanation": "Asmita Dey from Tripura won India's first-ever judo gold at the Commonwealth Games in the women's 48 kg category, defeating Canada's Heidi Quach in Glasgow 2026."
+  },
+  {
+    "q": "Renowned mountaineer Nirmal Purja (Nimsdai), known for his 'Project Possible' expedition, was killed in an avalanche in which mountain range in early August 2026?",
+    "options": ["Himalayas", "Hindu Kush", "Karakoram", "Pamir"],
+    "answer": 2,
+    "explanation": "Nirmal Purja, famous for summiting all 14 eight-thousanders in just over 6 months, was killed in an avalanche in the Karakoram range in Pakistan."
+  },
+  {
+    "q": "The 28th meeting of SBSTTA (Subsidiary Body on Scientific, Technical and Technological Advice) concluded on 1 August 2026 in which city?",
+    "options": ["Geneva", "Nairobi", "Bonn", "Montreal"],
+    "answer": 1,
+    "explanation": "SBSTTA-28, a scientific advisory body under the Convention on Biological Diversity, concluded its meeting in Nairobi, Kenya on 1 August 2026."
+  },
+  {
+    "q": "Parliament passed the Public Examinations (Prevention of Unfair Means) Amendment Bill, 2026 primarily in response to which incident?",
+    "options": ["UPSC Civil Services paper leak", "NEET-UG 2026 paper leak", "SSC CGL cancellation", "Railway recruitment scam"],
+    "answer": 1,
+    "explanation": "The Amendment Bill was passed after widespread protests over the NEET-UG 2026 paper leak, aiming to strengthen deterrence against organized exam-fraud syndicates after gaps were found in the original 2024 Act."
+  },
+  {
+    "q": "The PM-KISAN scheme was recently extended by the Union Cabinet for five more years, up to which financial year, with what total outlay?",
+    "options": ["2029-30, ₹2,50,000 crore", "2030-31, ₹3,15,614 crore", "2031-32, ₹3,50,000 crore", "2028-29, ₹2,80,000 crore"],
+    "answer": 1,
+    "explanation": "The Union Cabinet extended PM-KISAN till 2030-31 with a total outlay of ₹3,15,614 crore, continuing ₹6,000/year direct financial assistance to eligible farmer families."
+  },
+  {
+    "q": "The Favara-UPI cross-border payment corridor, which recently went live, connects India's UPI with the payment system of which country?",
+    "options": ["Sri Lanka", "Bhutan", "Maldives", "Nepal"],
+    "answer": 2,
+    "explanation": "Customers of Bank of Maldives and Maldives Islamic Bank can now make person-to-person transfers directly to UPI-enabled Indian bank accounts, expanding UPI's international footprint."
+  },
+  {
+    "q": "PM Modi launched a nationwide campaign in 2026 aimed at building a drug-free youth population, called:",
+    "options": ["Nasha Mukt Bharat Abhiyan", "Yuva Swasthya Sankalp", "Nasha Mukt Yuva for Viksit Bharat Sankalp Abhiyan", "Swachh Yuva Mission"],
+    "answer": 2,
+    "explanation": "The campaign calls for a drug-free youth population as essential to building a developed India by 2047, given the rising vulnerability of India's youth to substance abuse."
+  }
+]
