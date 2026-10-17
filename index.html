@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F766E">
+<title>The Hindu Newspaper Analysis · VibhillionAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Source+Serif+4:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#0F766E; --green-d:#0B5A54; --orange:#FF8A24; --orange-ink:#8A4300;
+  --blue:#123B5D; --blue-2:#2A5679;
+  --bg:#F4FBF8; --mint:#ECF8F4; --mint-2:#E1F4EF; --line:#D5EDE6; --line-2:#BFE3DA;
+  --card:#FFFFFF; --peach:#FFEAD3; --sky:#E3ECF5;
+  --ink:#123B5D; --ink-2:#41566A; --muted:#5B6B7A; --off:#8896A0;
+  --r-lg:20px; --r-md:14px; --r-sm:10px;
+  --sans:'Plus Jakarta Sans','Noto Sans Telugu',system-ui,sans-serif;
+  --serif:'Source Serif 4',Georgia,'Noto Sans Telugu',serif;
+  --orange-t:#A34A00;   /* sunset orange for small text (readable on white / peach) */
+  --bottom:0px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:8px}
+svg{flex:none}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- shell ---------- */
+.shell{display:flex;min-height:100vh}
+.side{display:none}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:20;height:56px;display:flex;align-items:center;gap:4px;padding:0 8px 0 12px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:3px solid var(--orange)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand b{font-size:16px;font-weight:800;display:block;line-height:1.1}
+.brand small{font-size:11px;font-weight:600;color:var(--green);display:block}
+.tb-title{flex:1;min-width:0;line-height:1.2}
+.tb-title b{display:block;font-size:16.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-title small{display:block;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{width:44px;height:44px;border:0;background:none;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.icon-btn:hover{background:var(--mint)}
+.crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:9px 16px;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--mint);border-bottom:1px solid var(--line)}
+.crumbs a{color:var(--green);min-height:28px;display:inline-flex;align-items:center}
+.crumbs a:hover{text-decoration:underline}
+.crumbs .here{color:var(--ink);font-weight:800}
+.view{flex:1;width:100%;max-width:1180px;margin:0 auto;padding:16px 16px calc(var(--bottom) + 24px);display:flex;flex-direction:column;gap:18px}
+
+/* ---------- common blocks ---------- */
+h1,h2,h3{margin:0}
+.sec-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sec-head h2{font-size:17px;font-weight:800;display:flex;align-items:center;gap:10px}
+.sec-head h2::before{content:"";width:6px;height:20px;border-radius:3px;background:var(--orange);flex:none}
+.sec-head .link{font-size:13px;font-weight:700;color:var(--green);min-height:44px;display:flex;align-items:center}
+.sub{font-size:12.5px;color:var(--muted)}
+.hero{position:relative;overflow:hidden;border-radius:22px;background:var(--green);color:#fff;padding:20px;box-shadow:inset 0 -6px 0 var(--orange)}
+.hero .orb{position:absolute;right:-40px;top:-46px;width:150px;height:150px;border-radius:50%;background:var(--blue);opacity:.35}
+.hero .dot{position:absolute;right:70px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--orange)}
+.pill{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;padding:4px 10px;border-radius:999px}
+.pill.or{background:var(--orange);color:var(--blue)}
+.hero h1{position:relative;margin:10px 0 8px;font-size:25px;line-height:1.2;font-weight:800}
+.hero h1::after{content:"";display:block;width:64px;height:5px;border-radius:3px;background:var(--orange);margin-top:10px}
+.hero p{position:relative;margin:0;font-size:13.5px;line-height:1.55;color:#E6F5F1;max-width:620px}
+.stats{position:relative;display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.stat{min-width:84px;padding:10px 14px;border-radius:14px;background:var(--blue)}
+.stat b{display:block;font-size:22px;font-weight:800;color:var(--orange)}
+.stat span{font-size:11.5px;color:#CFE6E2}
+.search{position:relative}
+.search label{display:flex;align-items:center;gap:10px;height:50px;padding:0 6px 0 14px;background:#fff;border:1.5px solid var(--line-2);border-radius:var(--r-md)}
+.search label:focus-within{border-color:var(--green);box-shadow:0 0 0 3px rgba(15,118,110,.15)}
+.search input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:14.5px}
+.search input::placeholder{color:#6B7C86}
+.hint{font-size:12px;color:var(--muted);margin-top:6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg)}
+.row{display:flex;align-items:center;gap:12px;padding:12px;min-height:64px;background:#fff;border:1px solid var(--line);border-radius:16px;transition:border-color .15s,transform .15s}
+.row:hover{border-color:var(--green);transform:translateY(-1px)}
+.row .t{flex:1;min-width:0}
+.row .t b{display:block;font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .t span{display:block;font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbadge{width:48px;height:52px;flex:none;border-radius:12px;background:var(--peach);color:var(--orange-t);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05}
+.dbadge b{font-size:18px;font-weight:800}
+.dbadge span{font-size:10.5px;font-weight:700;letter-spacing:.05em}
+.count{background:var(--peach);color:var(--orange-ink);font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.stack{display:flex;flex-direction:column;gap:10px}
+.empty{padding:22px;text-align:center;color:var(--muted);font-size:14px;background:#fff;border:1.5px dashed var(--line-2);border-radius:var(--r-lg)}
+
+/* year cards */
+.years{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.ycard{position:relative;display:flex;flex-direction:column;gap:6px;padding:16px;min-height:104px;border-radius:18px;background:#fff;border:1.5px solid var(--line-2);transition:transform .15s,border-color .15s}
+.ycard:hover{transform:translateY(-2px);border-color:var(--green)}
+.ycard b{font-size:28px;font-weight:800;line-height:1}
+.ycard span{font-size:12px;color:var(--muted)}
+.ycard.on{background:var(--green);border-color:var(--green);color:#fff;box-shadow:inset 0 -5px 0 var(--orange)}
+.ycard.on span{color:#E6F5F1}
+.ycard .tag{align-self:flex-start;margin-bottom:2px}
+/* segmented year tabs */
+.seg{display:flex;gap:6px;padding:4px;background:var(--mint-2);border-radius:14px;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg a{flex:1 0 auto;min-width:72px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:11px;font-size:15px;font-weight:700;padding:0 14px}
+.seg a.on{background:var(--green);color:#fff;font-weight:800;box-shadow:inset 0 -3px 0 var(--orange)}
+/* months */
+.months{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mcard{display:flex;flex-direction:column;justify-content:center;gap:4px;min-height:80px;padding:12px;border-radius:16px;background:#fff;border:1.5px solid var(--line-2)}
+a.mcard:hover{border-color:var(--green)}
+.mcard b{font-size:17px;font-weight:800}
+.mcard span{font-size:11.5px;font-weight:700;color:var(--orange-t)}
+.mcard.on{background:var(--green);border-color:var(--green);color:#fff;box-shadow:inset 0 -4px 0 var(--orange)}
+.mcard.on span{color:#E6F5F1}
+.mcard.off{background:none;border-style:dashed;border-color:#C4D3D0;color:#6B7C86}
+.mcard.off span{color:#6B7C86;font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:6px}
+.legend i{width:14px;height:14px;border-radius:5px;display:inline-block}
+.note{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border-radius:16px;background:var(--peach);color:#5C2E00;font-size:12.5px;line-height:1.5}
+/* calendar */
+.cal{padding:12px;display:flex;flex-direction:column;gap:8px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cal-head h1{font-size:18px;font-weight:800;text-align:center}
+.navbtn{width:44px;height:44px;border-radius:12px;background:var(--mint-2);color:var(--green-d);display:flex;align-items:center;justify-content:center;border:0}
+.navbtn.off{background:none;border:1.5px dashed #C4D3D0;color:var(--off);pointer-events:none}
+.wk,.grid7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.wk span{text-align:center;font-size:11.5px;font-weight:700;color:var(--muted)}
+.day{height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:12px;font-size:15px;line-height:1}
+a.day{background:var(--mint-2);color:var(--green-d);font-weight:700}
+a.day:hover{background:#CBEDE3}
+a.day i{width:5px;height:5px;border-radius:50%;background:var(--orange)}
+a.day.on{background:var(--orange);color:var(--blue);font-weight:800}
+a.day.on i{background:var(--blue)}
+.day.off{color:var(--off)}
+/* prev/next */
+.pn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pn a,.pn div{min-height:52px;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:14px;background:#fff;border:1.5px solid var(--line-2);font-size:13px;font-weight:700;color:var(--green)}
+.pn a:hover{border-color:var(--green)}
+.pn .nx{justify-content:flex-end;text-align:right}
+.pn div{border-style:dashed;border-color:#C4D3D0;background:none;color:#6B7C86}
+.pn small{display:block;font-size:10.5px;font-weight:600;color:var(--muted)}
+.pn .lab{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+/* chips */
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;height:40px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line-2);background:#fff;font-size:12.5px;font-weight:700;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.chip em{font-style:normal;opacity:.7;margin-left:4px}
+/* article cards */
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
+.acard{padding:16px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--green)}
+.acard .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.acard h3{font-size:16.5px;line-height:1.35;font-weight:800}
+.acard p{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.facts{background:var(--mint);border-radius:12px;padding:10px 12px}
+.facts .k,.kp-title{font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--orange-t);margin-bottom:4px}
+.facts ul{margin:0;padding-left:17px;font-size:13px;line-height:1.55}
+.acard .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:auto}
+.rel{font-size:11.5px;font-weight:700;color:var(--orange-ink);background:var(--peach);padding:4px 10px;border-radius:999px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:44px;padding:0 16px;border-radius:12px;background:var(--green);color:#fff;font-size:13.5px;font-weight:700;border:0}
+.btn:hover{background:var(--green-d)}
+.btn.ghost{background:#fff;color:var(--green);border:1.5px solid var(--line-2)}
+.cat{font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.c-national{background:var(--mint-2);color:var(--green-d)}
+.c-international{background:var(--sky);color:var(--blue)}
+.c-polity{background:#E8E4F6;color:#3D2E7A}
+.c-economy{background:var(--peach);color:var(--orange-ink)}
+.c-environment{background:#E2F3DD;color:#2D5A1E}
+.c-scitech{background:#DDF0F6;color:#0E5068}
+.c-ir{background:#F6E2E6;color:#7A2335}
+.c-other{background:#EEF1F3;color:#41566A}
+/* reader */
+.reader{display:flex;flex-direction:column;gap:14px}
+.reader-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.reader h1.hl{font-family:var(--serif);font-size:26px;line-height:1.28;font-weight:700}
+.reader h1.hl::after{content:"";display:block;width:72px;height:5px;border-radius:3px;background:var(--orange);margin-top:12px}
+.reader-wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.frame-box{flex:999 1 520px;min-width:0;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.frame-box iframe{display:block;width:100%;height:70vh;min-height:320px;border:0}
+.aside{flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.kp{background:var(--mint);border:1px solid #CDEBE3;border-radius:var(--r-lg);padding:16px}
+.kp ol{margin:0;padding-left:20px;font-size:14px;line-height:1.6}
+.exam{background:var(--peach);color:#5C2E00;border-radius:var(--r-lg);padding:14px 16px;font-size:13.5px;line-height:1.5}
+.exam b{display:block;font-size:10.5px;letter-spacing:.08em;margin-bottom:2px}
+.more a{display:block;padding:10px 12px;border-radius:12px;background:var(--bg);min-height:44px}
+.more a:hover{background:var(--mint-2)}
+.more a b{display:block;font-size:13.5px}
+.more a span{font-size:12px;color:var(--muted)}
+.loading{display:flex;align-items:center;justify-content:center;gap:10px;padding:40px;color:var(--muted)}
+.spin{width:22px;height:22px;border-radius:50%;border:3px solid var(--line-2);border-top-color:var(--green);animation:sp 0.8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.fade{animation:fd .25s ease}
+@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+mark{background:#FFE1B8;color:inherit;border-radius:3px;padding:0 1px}
+/* source / masthead strip — publication name set as text, not the newspaper's logo artwork */
+.src{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg)}
+.src{border-top:4px solid var(--orange)}
+.src .name{font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:.01em;color:var(--green-d);line-height:1}
+.src .who{flex:1 1 220px;min-width:0;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.src .who b{display:block;font-size:13.5px;color:var(--ink)}
+.src .disc{font-size:11.5px;font-weight:700;color:var(--ink-2);background:var(--mint);padding:7px 11px;border-radius:10px;line-height:1.4}
+.srcline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.srcline b{font-family:var(--serif);font-size:15px;color:var(--green-d)}
+.footer{padding:20px 16px calc(var(--bottom) + 22px);text-align:center;font-size:12px;line-height:1.5;color:#E6F5F1;border-top:4px solid var(--orange);background:var(--green)}
+.footer b{color:#fff}
+
+@media (min-width:560px){
+  .months{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hero{padding:26px 28px}
+  .hero h1{font-size:30px}
+}
+/* ---------- desktop ---------- */
+@media (min-width:1024px){
+  .side{display:flex;flex-direction:column;gap:22px;position:sticky;top:0;height:100vh;overflow-y:auto;width:256px;flex:none;background:var(--green-d);color:#fff;padding:22px 14px}
+  .side .brand{padding:0 8px}
+  .side .brand small{color:#FFC48F}
+  .snav{display:flex;flex-direction:column;gap:4px}
+  .snav a{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:12px;color:#DDF2EC;font-size:14px;font-weight:600}
+  .snav a:hover{background:rgba(255,255,255,.08)}
+  .snav a.on{background:var(--orange);color:var(--blue);font-weight:800}
+  .snav a.on::after{content:"";margin-left:auto;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+  .sdiv{height:1px;background:rgba(255,255,255,.22)}
+  .stitle{padding:0 12px;font-size:11px;font-weight:800;letter-spacing:.1em;color:#FFC48F}
+  .tree a{display:flex;align-items:center;justify-content:space-between;height:40px;padding:0 12px;border-radius:10px;font-size:14px;font-weight:700;color:#DDF2EC}
+  .tree a:hover{background:rgba(255,255,255,.08)}
+  .tree a.on{color:#fff;font-weight:800}
+  .tree a.m{margin-left:12px;font-size:13.5px;font-weight:600}
+  .tree a.m.on{background:var(--orange);color:var(--blue)}
+  .tree small{font-size:12px;opacity:.85}
+  .topbar .brand{display:none}
+  .topbar{padding:0 24px;height:64px}
+  .crumbs{padding:10px 28px}
+  .view{padding:26px 28px 40px;gap:22px}
+  .footer{padding-bottom:22px}
+  .reader h1.hl{font-size:34px}
+  .months{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="sr" href="#view">Skip to content</a>
+<div class="shell">
+
+  <aside class="side" aria-label="Sidebar">
+    <a class="brand" href="#/">
+      <span class="logo-slot"></span>
+      <span><b>VibhillionAI</b><small>Material Hub</small></span>
+    </a>
+    <nav class="snav" aria-label="Primary">
+      <a href="#/" data-nav="home"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Home</a>
+      <a href="../" data-nav="hub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Material Hub</a>
+      <a href="#/years" class="on" data-nav="news"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h13v14H6a2 2 0 0 1-2-2V5z"/><path d="M17 9h3v8a2 2 0 0 1-2 2"/><path d="M8 9h5M8 13h5"/></svg>The Hindu</a>
+      <a href="#" data-nav="mock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></svg>Mock Tests</a>
+      <a href="#" data-nav="more"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>More</a>
+    </nav>
+    <div class="sdiv"></div>
+    <div class="stitle">ARCHIVE</div>
+    <nav class="tree" id="tree" aria-label="Archive"></nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <a class="brand" href="#/" id="tbBrand">
+        <span class="logo-slot"></span>
+        <span><b>VibhillionAI</b><small>Material Hub</small></span>
+      </a>
+      <a class="icon-btn" id="backBtn" href="#/" aria-label="Back" hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <div class="tb-title" id="tbTitle"></div>
+      <a class="icon-btn" href="#/search" aria-label="Search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a>
+    </header>
+    <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+    <main class="view" id="view" tabindex="-1"></main>
+    <footer class="footer">© vibhillionai · Material prepared by <b>VibhillionAI Team</b><br><span style="display:inline-block;margin-top:6px">Notes based on articles from <i>The Hindu</i> (THG Publishing Pvt Ltd, The Hindu Group, Chennai). Independent study notes, not an official publication of The Hindu.</span></footer>
+  </div>
+</div>
+
+
+<!-- Live mode: the archive is NOT embedded here. build-index.py (run by the GitHub Pages workflow)
+     scans YEAR/Month/DD.html and writes content-index.json next to this file; the app fetches it on load. -->
+<script>
+(function(){
+'use strict';
+/* ============ CONFIG ============ */
+var CONFIG = {
+  contentRoot: '',                   // '' = YEAR/Month/DD.html sit at the repo root (e.g. 2026/October/15.html)
+  indexJson: 'content-index.json',   // written by build-index.py on every deploy (needs http/https)
+  logoSrc: ''                        // e.g. 'assets/vibhillionai-logo.png' — leave empty for the built-in mark
+};
+var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var WD = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var CATS = {
+  'National':{cls:'c-national',short:'National'},
+  'International':{cls:'c-international',short:'International'},
+  'Polity':{cls:'c-polity',short:'Polity'},
+  'Economy':{cls:'c-economy',short:'Economy'},
+  'Environment':{cls:'c-environment',short:'Environment'},
+  'Science & Technology':{cls:'c-scitech',short:'Sci & Tech'},
+  'International Relations':{cls:'c-ir',short:"Int'l Relations"}
+};
+var CAT_ORDER = Object.keys(CATS);
+
+/* ============ helpers ============ */
+var $ = function(s,r){return (r||document).querySelector(s);};
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function pad(n){return (n<10?'0':'')+n;}
+function catCls(c){return (CATS[c]||{cls:'c-other'}).cls;}
+function catShort(c){return (CATS[c]||{short:c}).short;}
+var ICON = {
+  chev:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>',
+  back:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+  down:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>',
+  search:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
+  clock:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  info:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg>',
+  ext:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
+};
+var LOGO = CONFIG.logoSrc
+  ? '<img src="'+esc(CONFIG.logoSrc)+'" alt="VibhillionAI" width="34" height="34" style="border-radius:9px">'
+  : '<svg width="34" height="34" viewBox="0 0 32 32" role="img" aria-label="VibhillionAI"><rect width="32" height="32" rx="9" fill="#0F766E"/><path d="M8 10l8 14 8-14" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="8" r="3" fill="#FF8A24"/></svg>';
+document.querySelectorAll('.logo-slot').forEach(function(n){n.outerHTML=LOGO;});
+
+/* storage (wrapped: private windows / WebViews may block it) */
+var store = {
+  get:function(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},
+  set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+};
+
+/* ============ data model ============
+   INDEX shape (written by build-index.py):
+   { generated:"...", years:{ "2026":{ "October":{ "15":{ path:"2026/October/15.html",
+       articles:[{id,headline,summary,category,facts:[...],relevance,readMin}] } } } } }      */
+var INDEX = null, DAYS = [];   // DAYS = flat sorted list, newest first
+
+function buildFlat(){
+  DAYS = [];
+  Object.keys(INDEX.years||{}).forEach(function(y){
+    var ms = INDEX.years[y];
+    Object.keys(ms).forEach(function(m){
+      var mi = MONTHS.indexOf(m); if(mi<0) return;
+      Object.keys(ms[m]).forEach(function(d){
+        var e = ms[m][d], dt = new Date(+y, mi, +d);
+        DAYS.push({y:y,m:m,mi:mi,d:+d,date:dt,key:y+'-'+pad(mi+1)+'-'+pad(+d),
+          path:e.path||((CONFIG.contentRoot?CONFIG.contentRoot+'/':'')+y+'/'+m+'/'+pad(+d)+'.html'),
+          articles:(e.articles||[]).map(function(a,i){a.id=a.id||('a'+(i+1));return a;})});
+      });
+    });
+  });
+  DAYS.sort(function(a,b){return b.date-a.date;});
+}
+function yearsList(){return Object.keys(INDEX.years||{}).sort(function(a,b){return b-a;});}
+function daysOf(y,m){return DAYS.filter(function(x){return x.y===y&&(!m||x.m===m);});}
+function findDay(y,m,d){for(var i=0;i<DAYS.length;i++){var x=DAYS[i];if(x.y===y&&x.m===m&&x.d===+d)return {day:x,i:i};}return null;}
+function fmtLong(x){return WD[x.date.getDay()]+', '+x.d+' '+x.m+' '+x.y;}
+function fmtShort(x){return WD[x.date.getDay()]+', '+x.d+' '+x.m.slice(0,3);}
+function dayHref(x){return '#/'+x.y+'/'+x.m+'/'+x.d;}
+function catsOf(x){var s={};x.articles.forEach(function(a){s[a.category]=1;});return Object.keys(s);}
+function totals(){var a=0;DAYS.forEach(function(x){a+=x.articles.length;});return {years:yearsList().length,days:DAYS.length,articles:a};}
+
+/* recently viewed */
+function addRecent(x,a){
+  var r=store.get('hca_recent',[]).filter(function(o){return !(o.k===x.key&&o.id===a.id);});
+  r.unshift({k:x.key,y:x.y,m:x.m,d:x.d,id:a.id,h:a.headline,c:a.category});
+  store.set('hca_recent',r.slice(0,8));
+}
+
+/* ============ rendering bits ============ */
+var view = $('#view');
+function setChrome(o){
+  $('#tbTitle').innerHTML = o.title ? '<b>'+esc(o.title)+'</b>'+(o.sub?'<small>'+esc(o.sub)+'</small>':'') : '';
+  var back=$('#backBtn'); if(o.back){back.hidden=false;back.setAttribute('href',o.back);} else back.hidden=true;
+  $('#tbBrand').style.display = o.back ? 'none' : '';
+  var c = o.crumbs||[];
+  $('#crumbs').innerHTML = c.map(function(it,i){
+    var last=i===c.length-1;
+    return (i?'<span aria-hidden="true">›</span>':'')+(last?'<span class="here" aria-current="page">'+esc(it[0])+'</span>':'<a href="'+it[1]+'">'+esc(it[0])+'</a>');
+  }).join('');
+  $('#crumbs').hidden = !c.length;
+  document.title = (o.title?o.title+' · ':'')+'The Hindu Newspaper Analysis · VibhillionAI';
+  renderTree(o.y,o.m);
+}
+var CR_BASE = [['Material Hub','../'],['The Hindu','#/']];
+function rowDay(x){
+  var cats = catsOf(x).slice(0,3).join(', ');
+  return '<a class="row" href="'+dayHref(x)+'"><div class="dbadge"><b>'+x.d+'</b><span>'+x.m.slice(0,3).toUpperCase()+'</span></div>'+
+    '<div class="t"><b>'+esc(fmtLong(x))+'</b><span>'+esc(cats||'Articles')+'</span></div>'+
+    '<span class="count">'+x.articles.length+' article'+(x.articles.length===1?'':'s')+'</span></a>';
+}
+function searchBox(val,ph){
+  return '<form class="search" role="search" onsubmit="return false"><label>'+ICON.search+
+    '<span class="sr">Search the archive</span><input id="q" type="search" autocomplete="off" value="'+esc(val||'')+'" placeholder="'+esc(ph||'Search keyword, year, month or date')+'"></label>'+
+    '<div class="hint">Try: <em>repo rate</em>, <em>Polity</em>, <em>October 2026</em> or <em>15 Oct</em></div></form>';
+}
+function bindSearch(){
+  var q=$('#q'); if(!q) return;
+  q.addEventListener('keydown',function(e){if(e.key==='Enter'){location.hash='#/search/'+encodeURIComponent(q.value.trim());}});
+}
+function recentHTML(){
+  var r=store.get('hca_recent',[]).filter(function(o){return findDay(o.y,o.m,o.d);});
+  if(!r.length) return '';
+  return '<section class="stack"><div class="sec-head"><h2>Recently viewed</h2></div>'+
+    r.slice(0,4).map(function(o){
+      return '<a class="row" href="#/'+o.y+'/'+o.m+'/'+o.d+'/'+o.id+'"><div class="dbadge" style="background:var(--peach);color:var(--orange-ink)">'+ICON.clock+'</div>'+
+      '<div class="t"><b>'+esc(o.h)+'</b><span>'+o.d+' '+o.m.slice(0,3)+' '+o.y+' · '+esc(o.c)+'</span></div></a>';
+    }).join('')+'</section>';
+}
+function articleCard(x,a,qre){
+  var hl = qre ? esc(a.headline).replace(qre,'<mark>$1</mark>') : esc(a.headline);
+  var facts = (a.facts||[]).slice(0,3);
+  return '<article class="card acard" data-cat="'+esc(a.category)+'">'+
+    '<div class="top"><span class="cat '+catCls(a.category)+'">'+esc(a.category)+'</span><span class="sub">'+(a.readMin?a.readMin+' min read':'')+'</span></div>'+
+    '<h3>'+hl+'</h3>'+(a.summary?'<p>'+esc(a.summary)+'</p>':'')+
+    (facts.length?'<div class="facts"><div class="k">KEY FACTS</div><ul>'+facts.map(function(f){return '<li>'+esc(f)+'</li>';}).join('')+'</ul></div>':'')+
+    '<div class="foot">'+(a.relevance?'<span class="rel">'+esc(a.relevance)+'</span>':'<span></span>')+
+    '<a class="btn" href="'+dayHref(x)+'/'+a.id+'">Read article '+ICON.chev+'</a></div></article>';
+}
+function pnHTML(prev,next,prevLab,nextLab){
+  return '<div class="pn">'+
+    (prev?'<a href="'+prev[0]+'">'+ICON.back+'<span class="lab"><small>'+esc(prevLab)+'</small>'+esc(prev[1])+'</span></a>':'<div>'+ICON.back+'<span class="lab"><small>'+esc(prevLab)+'</small>None earlier</span></div>')+
+    (next?'<a class="nx" href="'+next[0]+'"><span class="lab"><small>'+esc(nextLab)+'</small>'+esc(next[1])+'</span>'+ICON.chev+'</a>':'<div class="nx"><span class="lab"><small>'+esc(nextLab)+'</small>Not yet added</span>'+ICON.chev+'</div>')+
+  '</div>';
+}
+
+/* sidebar tree (desktop) */
+function renderTree(selY,selM){
+  var html='';
+  yearsList().forEach(function(y,i){
+    var open = selY ? y===selY : i===0;
+    html+='<a href="#/'+y+'" class="'+(y===selY?'on':'')+'">'+y+(open?ICON.down:ICON.chev)+'</a>';
+    if(open){
+      MONTHS.slice().reverse().forEach(function(m){
+        var n=daysOf(y,m).length; if(!n) return;
+        html+='<a class="m'+(m===selM&&y===selY?' on':'')+'" href="#/'+y+'/'+m+'">'+m+'<small>'+n+'</small></a>';
+      });
+    }
+  });
+  $('#tree').innerHTML=html;
+}
+
+/* ============ SCREENS ============ */
+function screenHome(){
+  var t=totals();
+  setChrome({crumbs:[]});
+  var latestY = yearsList()[0];
+  view.innerHTML =
+  '<section class="hero fade"><div class="orb" aria-hidden="true"></div><div class="dot" aria-hidden="true"></div>'+
+    '<span class="pill or" style="position:relative">EXAM-READY ARCHIVE</span>'+
+    '<h1>The Hindu Newspaper Analysis</h1>'+
+    '<p>Important articles from The Hindu, rewritten as exam-focused notes for UPSC, APPSC, TGPSC, SSC and other competitive exams.</p>'+
+    '<div class="stats"><div class="stat"><b>'+t.years+'</b><span>Years</span></div><div class="stat"><b>'+t.days+'</b><span>Days</span></div><div class="stat"><b>'+t.articles+'</b><span>Articles</span></div></div>'+
+  '</section>'+
+  searchBox()+
+  '<section class="stack"><div class="sec-head"><h2>Browse by year</h2><a class="link" href="#/years">All years</a></div>'+
+    '<div class="years">'+yearsList().slice(0,4).map(function(y){
+      var ms=MONTHS.filter(function(m){return daysOf(y,m).length;}).length;
+      return '<a class="ycard'+(y===latestY?' on':'')+'" href="#/'+y+'">'+(y===latestY?'<span class="pill or tag">LATEST</span>':'')+'<b>'+y+'</b><span>'+ms+' month'+(ms===1?'':'s')+' · '+daysOf(y).length+' day'+(daysOf(y).length===1?'':'s')+'</span></a>';
+    }).join('')+'</div></section>'+
+  '<section class="stack"><div class="sec-head"><h2>Recently added</h2>'+(DAYS[0]?'<a class="link" href="#/'+DAYS[0].y+'/'+DAYS[0].m+'">This month</a>':'')+'</div>'+
+    (DAYS.length?DAYS.slice(0,4).map(rowDay).join(''):'<div class="empty">No editions yet. Add a day file and run build-index.py.</div>')+'</section>'+
+  recentHTML();
+  bindSearch();
+}
+
+function screenYears(){
+  setChrome({title:'Select year',sub:'The Hindu Newspaper Analysis',back:'#/',crumbs:CR_BASE.concat([['Years','#/years']])});
+  var ys=yearsList();
+  view.innerHTML = searchBox('','Search keyword or year')+
+    '<div class="stack fade">'+ys.map(function(y,i){
+      var ms=MONTHS.filter(function(m){return daysOf(y,m).length;}).length, d=daysOf(y), a=0; d.forEach(function(x){a+=x.articles.length;});
+      return '<a class="row" href="#/'+y+'" style="'+(i===0?'background:var(--blue);color:#fff;border-color:var(--blue)':'')+';padding:16px;border-radius:20px">'+
+        '<div class="t"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:30px;font-weight:800;line-height:1">'+y+'</span>'+(i===0?'<span class="pill or">LATEST</span>':'')+'</div>'+
+        '<span style="margin-top:8px;'+(i===0?'color:#CFE6E2':'')+'">'+ms+' month'+(ms===1?'':'s')+' · '+d.length+' day'+(d.length===1?'':'s')+' · '+a+' article'+(a===1?'':'s')+'</span></div>'+ICON.chev+'</a>';
+    }).join('')+(ys.length?'':'<div class="empty">No years yet.</div>')+'</div>';
+  bindSearch();
+}
+
+function screenMonths(y){
+  if(!INDEX.years[y]) return notFound();
+  setChrome({title:'Select month',sub:'The Hindu · '+y,back:'#/years',y:y,crumbs:CR_BASE.concat([['Years','#/years'],[y,'#/'+y]])});
+  var avail = MONTHS.filter(function(m){return daysOf(y,m).length;}).length;
+  view.innerHTML =
+    '<div class="seg" role="tablist" aria-label="Year">'+yearsList().map(function(yy){return '<a role="tab" aria-selected="'+(yy===y)+'" class="'+(yy===y?'on':'')+'" href="#/'+yy+'">'+yy+'</a>';}).join('')+'</div>'+
+    '<div class="sec-head"><h2 style="font-size:20px">Months in '+y+'</h2><span class="sub">'+avail+' of 12 available</span></div>'+
+    '<div class="months fade">'+MONTHS.map(function(m){
+      var n=daysOf(y,m).length;
+      return n?'<a class="mcard" href="#/'+y+'/'+m+'"><b>'+m.slice(0,3)+'</b><span>'+n+' day'+(n===1?'':'s')+'</span></a>'
+              :'<div class="mcard off" aria-disabled="true"><b>'+m.slice(0,3)+'</b><span>No notes yet</span></div>';
+    }).join('')+'</div>'+
+    '<div class="legend"><span><i style="background:#fff;border:1.5px solid var(--line-2)"></i>Available</span><span><i style="border:1.5px dashed #C4D3D0"></i>Not yet published</span></div>'+
+    '<div class="note">'+ICON.info+'<p style="margin:0">Months and dates appear here only after their notes are published, so you never open an empty page.</p></div>';
+}
+
+function screenDates(y,m){
+  var list=daysOf(y,m); if(!list.length) return notFound();
+  var mi=MONTHS.indexOf(m);
+  setChrome({title:'Select date',sub:m+' '+y,back:'#/'+y,y:y,m:m,crumbs:CR_BASE.concat([[y,'#/'+y],[m,'#/'+y+'/'+m]])});
+  // previous / next available month
+  var monthsAvail=[]; yearsList().slice().reverse().forEach(function(yy){MONTHS.forEach(function(mm){if(daysOf(yy,mm).length)monthsAvail.push([yy,mm]);});});
+  var ci=-1; monthsAvail.forEach(function(p,i){if(p[0]===y&&p[1]===m)ci=i;});
+  var pm=monthsAvail[ci-1], nm=monthsAvail[ci+1];
+  var first=new Date(+y,mi,1), off=(first.getDay()+6)%7, dim=new Date(+y,mi+1,0).getDate();
+  var newest = DAYS[0], cells='';
+  for(var i=0;i<off;i++) cells+='<div aria-hidden="true"></div>';
+  for(var d=1;d<=dim;d++){
+    var hit=list.filter(function(x){return x.d===d;})[0];
+    cells+= hit ? '<a class="day'+(hit===newest?' on':'')+'" href="#/'+y+'/'+m+'/'+d+'" aria-label="'+d+' '+m+', '+hit.articles.length+' articles"><span>'+d+'</span><i aria-hidden="true"></i></a>'
+                : '<div class="day off" aria-disabled="true">'+d+'</div>';
+  }
+  view.innerHTML =
+    '<section class="card cal fade"><div class="cal-head">'+
+      (pm?'<a class="navbtn" href="#/'+pm[0]+'/'+pm[1]+'" aria-label="Previous month, '+pm[1]+' '+pm[0]+'">'+ICON.back+'</a>':'<span class="navbtn off" aria-hidden="true">'+ICON.back+'</span>')+
+      '<h1>'+m+' '+y+'</h1>'+
+      (nm?'<a class="navbtn" href="#/'+nm[0]+'/'+nm[1]+'" aria-label="Next month, '+nm[1]+' '+nm[0]+'">'+ICON.chev+'</a>':'<span class="navbtn off" aria-hidden="true">'+ICON.chev+'</span>')+
+    '</div><div class="wk"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>'+
+    '<div class="grid7">'+cells+'</div>'+
+    '<div class="legend" style="padding:4px 4px 0"><span><i style="background:var(--mint-2)"></i>Notes available</span><span><i style="background:var(--orange)"></i>Latest edition</span></div></section>'+
+    '<section class="stack"><div class="sec-head"><h2>All dates</h2><span class="sub">'+list.length+' day'+(list.length===1?'':'s')+' in '+m+'</span></div>'+list.map(rowDay).join('')+'</section>';
+}
+
+function screenDaily(y,m,d){
+  var f=findDay(y,m,d); if(!f) return notFound();
+  var x=f.day, older=DAYS[f.i+1], newer=DAYS[f.i-1];
+  setChrome({title:fmtLong(x),sub:x.articles.length+' important articles',back:'#/'+y+'/'+m,y:y,m:m,
+    crumbs:CR_BASE.concat([[y,'#/'+y],[m.slice(0,3),'#/'+y+'/'+m],[String(x.d),dayHref(x)]])});
+  var present = CAT_ORDER.filter(function(c){return x.articles.some(function(a){return a.category===c;});});
+  x.articles.forEach(function(a){if(present.indexOf(a.category)<0)present.push(a.category);});
+  var sel = store.get('hca_cat','All'); if(sel!=='All'&&present.indexOf(sel)<0) sel='All';
+  view.innerHTML =
+    '<div class="srcline">Source: <b>The Hindu</b><span>· '+esc(fmtLong(x))+' edition</span></div>'+
+    pnHTML(older?[dayHref(older),fmtShort(older)]:null, newer?[dayHref(newer),fmtShort(newer)]:null,'Previous date','Next date')+
+    '<div class="chips" role="group" aria-label="Filter by category">'+
+      ['All'].concat(present).map(function(c){
+        var n = c==='All'?x.articles.length:x.articles.filter(function(a){return a.category===c;}).length;
+        return '<button class="chip" type="button" data-c="'+esc(c)+'" aria-pressed="'+(c===sel)+'">'+esc(c==='All'?'All':catShort(c))+'<em>'+n+'</em></button>';
+      }).join('')+'</div>'+
+    '<div class="agrid fade" id="agrid">'+x.articles.map(function(a){return articleCard(x,a);}).join('')+'</div>'+
+    '<a class="btn ghost" style="align-self:flex-start" data-day="'+esc(x.path)+'" href="'+esc(x.path)+'" target="_blank" rel="noopener">Open full day page '+ICON.ext+'</a>';
+  function apply(c){
+    sel=c; store.set('hca_cat',c);
+    view.querySelectorAll('.chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.c===c));});
+    view.querySelectorAll('#agrid .acard').forEach(function(card){card.hidden = !(c==='All'||card.dataset.cat===c);});
+  }
+  view.querySelectorAll('.chip').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.c);});});
+  apply(sel);
+}
+
+function screenReader(y,m,d,id){
+  var f=findDay(y,m,d); if(!f) return notFound();
+  var x=f.day, idx=-1; x.articles.forEach(function(a,i){if(a.id===id)idx=i;});
+  if(idx<0) return notFound();
+  var a=x.articles[idx], prevA=x.articles[idx-1], nextA=x.articles[idx+1];
+  addRecent(x,a);
+  setChrome({title:'Article',sub:fmtShort(x)+' '+x.y+' · '+(idx+1)+' of '+x.articles.length,back:dayHref(x),y:y,m:m,
+    crumbs:CR_BASE.concat([[y,'#/'+y],[m.slice(0,3),'#/'+y+'/'+m],[String(x.d),dayHref(x)],[catShort(a.category),'#']])});
+  var src = x.path+'?reader=1&only='+encodeURIComponent(a.id);
+  var page = window.HINDU_PAGES && window.HINDU_PAGES[x.path];   // present in the single-file build
+  view.innerHTML =
+  '<div class="reader fade">'+
+    '<div class="reader-meta"><span class="cat '+catCls(a.category)+'">'+esc(a.category)+'</span><span class="srcline">Source: <b>The Hindu</b></span><span class="sub">'+esc(fmtLong(x))+(a.readMin?' · '+a.readMin+' min read':'')+'</span></div>'+
+    '<h1 class="hl">'+esc(a.headline)+'</h1>'+
+    '<div class="reader-wrap">'+
+      '<div class="frame-box"><iframe id="frame" title="'+esc(a.headline)+'"'+(page?'':' src="'+esc(src)+'"')+'></iframe></div>'+
+      '<aside class="aside">'+
+        (a.relevance?'<div class="exam"><b>EXAM RELEVANCE</b>'+esc(a.relevance)+'</div>':'')+
+        ((a.facts||[]).length?'<div class="kp"><div class="kp-title">KEY POINTS</div><ol>'+a.facts.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ol></div>':'')+
+        '<div class="card more" style="padding:14px;display:flex;flex-direction:column;gap:8px"><div class="sec-head"><h2 style="font-size:15px">More from '+x.d+' '+x.m.slice(0,3)+'</h2></div>'+
+          x.articles.filter(function(o){return o!==a;}).slice(0,4).map(function(o){return '<a href="'+dayHref(x)+'/'+o.id+'"><b>'+esc(o.headline)+'</b><span>'+esc(o.category)+'</span></a>';}).join('')+
+        '</div>'+
+      '</aside>'+
+    '</div>'+
+    pnHTML(prevA?[dayHref(x)+'/'+prevA.id,'Article '+idx]:[dayHref(x),'Back to list'], nextA?[dayHref(x)+'/'+nextA.id,'Article '+(idx+2)+' of '+x.articles.length]:null,'Previous','Next article')+
+  '</div>';
+  // the day page shows only this article (?only=) and posts its height back, so no inner scrollbar
+  if(page){
+    $('#frame').srcdoc = page.replace(/<head([^>]*)>/i, '<head$1><script>window.HCA_READER=1;window.HCA_ONLY='+JSON.stringify(a.id)+';<\/script>');
+  }
+}
+/* single-file build: "Open full day page" opens the embedded page in a new tab */
+document.addEventListener('click',function(e){
+  var l=e.target.closest&&e.target.closest('a[data-day]'); if(!l) return;
+  var page=window.HINDU_PAGES&&window.HINDU_PAGES[l.getAttribute('data-day')]; if(!page) return;
+  e.preventDefault();
+  try{ window.open(URL.createObjectURL(new Blob([page],{type:'text/html'})),'_blank'); }catch(err){}
+});
+window.addEventListener('message',function(e){
+  var fr=document.getElementById('frame');
+  if(!fr||!e.data||typeof e.data.hcaHeight!=='number'||e.source!==fr.contentWindow) return;
+  fr.style.height=Math.min(Math.max(e.data.hcaHeight,240),12000)+'px';
+});
+
+function screenSearch(q){
+  setChrome({title:'Search',sub:'The Hindu Newspaper Analysis',back:'#/',crumbs:CR_BASE.concat([['Search','#/search']])});
+  q=(q||'').trim();
+  var res=[], days=[], qre=null;
+  if(q){
+    var ql=q.toLowerCase(), terms=ql.split(/\s+/);
+    qre=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+    DAYS.forEach(function(x){
+      var dateTxt=(x.d+' '+x.m+' '+x.m.slice(0,3)+' '+x.y+' '+x.key+' '+WD[x.date.getDay()]).toLowerCase();
+      var dayHit = terms.every(function(t){return dateTxt.indexOf(t)>=0;});
+      if(dayHit) days.push(x);
+      x.articles.forEach(function(a){
+        var txt=(a.headline+' '+(a.summary||'')+' '+a.category+' '+(a.facts||[]).join(' ')+' '+(a.relevance||'')).toLowerCase();
+        if(terms.every(function(t){return txt.indexOf(t)>=0;})) res.push([x,a]);
+      });
+    });
+  }
+  view.innerHTML = searchBox(q)+
+    (!q?'<div class="empty">Type a keyword, year, month or date and press Enter.</div>':
+     ((days.length?'<section class="stack"><div class="sec-head"><h2>Dates</h2><span class="sub">'+days.length+'</span></div>'+days.slice(0,12).map(rowDay).join('')+'</section>':'')+
+      '<section class="stack"><div class="sec-head"><h2>Articles</h2><span class="sub">'+res.length+' result'+(res.length===1?'':'s')+'</span></div>'+
+      (res.length?'<div class="agrid">'+res.slice(0,60).map(function(p){return articleCard(p[0],p[1],qre);}).join('')+'</div>':'<div class="empty">No articles match “'+esc(q)+'”.</div>')+'</section>'));
+  bindSearch();
+  var inp=$('#q'); if(inp&&!q) inp.focus();
+  // live search as you type (debounced)
+  var tmr; if(inp) inp.addEventListener('input',function(){clearTimeout(tmr);tmr=setTimeout(function(){history.replaceState(null,'','#/search/'+encodeURIComponent(inp.value.trim()));route(true);},350);});
+}
+
+function notFound(){
+  setChrome({title:'Not found',back:'#/',crumbs:CR_BASE});
+  view.innerHTML='<div class="empty">This page is not in the archive yet. <a href="#/" style="color:var(--green);font-weight:700">Go to the archive home</a></div>';
+}
+
+/* ============ router ============ */
+function route(keepFocus){
+  var h=decodeURIComponent(location.hash.replace(/^#\/?/,'')), p=h.split('/').filter(Boolean);
+  if(p[0]==='search'){ screenSearch(p.slice(1).join('/')); if(!keepFocus){var q=$('#q'); if(q){q.focus(); var v=q.value; q.value=''; q.value=v;}} return; }
+  if(!keepFocus) window.scrollTo(0,0);
+  if(!p.length) screenHome();
+  else if(p[0]==='years') screenYears();
+  else if(p.length===1) screenMonths(p[0]);
+  else if(p.length===2) screenDates(p[0],p[1]);
+  else if(p.length===3) screenDaily(p[0],p[1],p[2]);
+  else screenReader(p[0],p[1],p[2],p[3]);
+}
+window.addEventListener('hashchange',function(){route(false);});
+
+/* ============ boot ============ */
+function boot(data){
+  INDEX = data && data.years ? data : {years:{}};
+  buildFlat(); route(false);
+}
+if(window.HINDU_INDEX){ boot(window.HINDU_INDEX); }
+else{
+  view.innerHTML='<div class="loading"><span class="spin"></span>Loading archive…</div>';
+  fetch(CONFIG.indexJson,{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json();}).then(boot)
+    .catch(function(){boot({years:{}}); view.insertAdjacentHTML('afterbegin','<div class="note">'+ICON.info+'<p style="margin:0">Could not load <b>content-index.json</b>. Open the page from its https:// link, and check that the <b>Actions</b> tab shows a green run of the Pages workflow.</p></div>');});
+}
+})();
+</script>
+</body>
+</html>
